@@ -1,5 +1,4 @@
 #include <iostream>
-#include "product.h"
 #include "pizza.h"
 #include "vegetarian pizza.h"
 
@@ -68,10 +67,13 @@ void Pizza::addIngredient() {
     return;
 }
 
-void Pizza::modifyIngredient(int index) {
+void Pizza::modifyIngredient() {
+    int index;
+    cout<<">>> Enter an index between 0 and "<<numberOfIngredients-1<<", or -1 to abort: ";
+    cin>>index;
     while (index<-1 or index>=numberOfIngredients) {
         cout<<"Error: Index out of range\n";
-        cout<<">>> Enter an index between 0 and "<<numberOfIngredients<<", or -1 to abort: ";
+        cout<<">>> Enter an index between 0 and "<<numberOfIngredients-1<<", or -1 to abort: ";
         cin>>index;
     }
 

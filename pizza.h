@@ -65,7 +65,7 @@ public:
 
     void addIngredient();
 
-    void modifyIngredient(int index);
+    void modifyIngredient();
 
     float getPrice() const;
 
