@@ -3,7 +3,7 @@
 
 class Product {
 protected:
-    virtual int getPrice() = 0;
+    virtual float getPrice() const = 0;
 };
 
 #endif

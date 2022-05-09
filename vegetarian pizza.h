@@ -1,12 +1,17 @@
 #ifndef TEMA_3_VEGETARIAN_PIZZA_H
 #define TEMA_3_VEGETARIAN_PIZZA_H
 
+#include "product.h"
+#include "pizza.h"
+
+using namespace std;
+
 class VegetarianPizza: public Pizza {
     Ingredient soy;
 
 public:
 
-    VegetarianPizza();
+    VegetarianPizza(): Pizza() {soy.setName("Soy");};
 
     VegetarianPizza(const VegetarianPizza &pizza);
 
@@ -16,9 +21,9 @@ public:
 
     friend ostream& operator<<(ostream &out, VegetarianPizza &pizza);
 
-    int getPrice();
+    float getPrice() const;
 
-    ~VegetarianPizza();
+    ~VegetarianPizza() {};
 };
 
 #endif

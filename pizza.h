@@ -1,7 +1,12 @@
 #ifndef TEMA_3_PIZZA_H
 #define TEMA_3_PIZZA_H
 
+#include <iostream>
+#include "product.h"
+
 using namespace std;
+
+class VegetarianPizza;
 
 class Pizza: public Product {
 protected:
@@ -10,7 +15,7 @@ protected:
         float quantity, price;
 
     public:
-        Ingredient(string name="Default", float quantity=0, float price=0): name(name), quantity(quantity), price(price) {};
+        Ingredient(const string &name="Default", float quantity=0, float price=0): name(name), quantity(quantity), price(price) {};
 
         Ingredient(const Ingredient &ingredient);
 
@@ -22,28 +27,29 @@ protected:
 
         void setName(string name);
 
-        string getName();
+        string getName() const;
 
         void setQuantity(float quantity);
 
-        float getQuantity();
+        float getQuantity() const;
 
         void setPrice (float price);
 
-        float getPrice();
+        float getPrice() const;
 
-        ~Ingredient();
+        ~Ingredient() {};
     };
 
-private:
     string name;
     int numberOfIngredients;
-    static int labour;
-    Ingredient ingredients[13];     //  average pizza has 12.5 ingredients (https://www.spoonablerecipes.com/common-ingredients-in-pizza-dishes)
+    static float labour;
+    Ingredient *ingredients;
 
 public:
 
-    Pizza(string name="Default", int numberOfIngredients=0);
+    Pizza(const string &name="Default", int numberOfIngredients=0): Product(), name(name), numberOfIngredients(numberOfIngredients) {
+        ingredients=new Ingredient[13];
+    };
 
     Pizza(const Pizza &pizza);
 
@@ -55,19 +61,30 @@ public:
 
     void setName(const string &name);
 
-    string getName();
+    string getName() const;
 
-    void addIngredient(); //    increment numberOfIngredients; cin>>ingredients[index]
+    void addIngredient();
 
-    void printIngredients(); //     for i... cout<<ingredients[i]
+    void modifyIngredient(int index);
 
-    int getPrice();
+    float getPrice() const;
 
-    static void setLabour();
+    static void setLabourCost(float cost);
 
-    ~Pizza();
+    ~Pizza() {delete[]ingredients;};
+
+    friend istream& operator>>(istream &in, Ingredient &ingredient);
+
+    friend ostream& operator<<(ostream &out, const Pizza::Ingredient &ingredient);
+
+    friend istream& operator>>(istream &in, VegetarianPizza &pizza);
+
+    friend ostream& operator<<(ostream &out, VegetarianPizza &pizza);
+
 };
 
-int Pizza::labour=0;
+float Pizza::labour=0;
+
+void Pizza::setLabourCost(float cost) {labour=cost;}
 
 #endif
