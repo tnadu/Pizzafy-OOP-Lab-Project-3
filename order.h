@@ -4,29 +4,29 @@
 #include "product.h"
 #include "pizza.h"
 #include "vegetarian pizza.h"
-#include "menu.cpp"
 #include <unordered_map>
 
 using namespace std;
 
 class Order {
-    unordered_map<string, int> order, queue;
+protected:
+    unordered_map<const Product*, int> receipt;
     float total;
 
 public:
-    Order(const unordered_map<string, int> &order, const unordered_map<string, int> &queue): order(order), queue(queue), total(0) {};
+    Order(): total(0) {};
 
     Order(const Order &order);
 
     Order& operator=(const Order &order);
 
-    friend istream& operator>>(istream &in, Order &order);
-
     friend ostream& operator<<(ostream &out, const Order &order);
 
-    friend void update(Order &order, const Menu &menu);
+    void add(vector<Product *>menu);
 
-    float getPrice() {return total;};
+    void remove(vector<Product *>menu);
+
+    virtual float getPrice() {return total;};
 
     ~Order() {};
 };

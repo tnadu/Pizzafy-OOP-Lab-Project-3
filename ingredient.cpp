@@ -1,62 +1,97 @@
 #include <iostream>
-#include "pizza.h"
+#include "ingredient.h"
 
-Pizza::Ingredient::Ingredient(const Ingredient &ingredient) {
+Ingredient::Ingredient(const Ingredient &ingredient) {
     name=ingredient.name;
     quantity=ingredient.quantity;
     price=ingredient.price;
 }
 
-Pizza::Ingredient& Pizza::Ingredient::operator=(const Ingredient &ingredient) {
+Ingredient& Ingredient::operator=(const Ingredient &ingredient) {
     name=ingredient.name;
     quantity=ingredient.quantity;
     price=ingredient.price;
     return *this;
 }
 
-istream& operator>>(istream &in, Pizza::Ingredient &ingredient) {
-    in>>ingredient.name>>ingredient.quantity;
-    while(ingredient.quantity<0.0) {
-        cout<<"Error: Ingredient quantity must be positive\n";
-        cout<<">>> Enter a valid ingredient quantity: ";
-        in>>ingredient.quantity;
+istream& operator>>(istream &in, Ingredient &ingredient) {
+    string input;
+    cout<<">>> Enter an ingredient: ";
+
+    in>>ingredient.name;
+    in>>input;
+    try {
+        ingredient.quantity=stof(input);
+    }
+    catch (...) {
+        cout<<"FATAL ERROR: \'"<<input<<"' not a number!";
+        exit(1);
     }
 
-    in>>ingredient.price;
-    while(ingredient.price<0.0) {
+    while(ingredient.quantity<=0.0) {
+        cout<<"Error: Ingredient quantity must be positive\n";
+        cout<<">>> Enter a valid ingredient quantity: ";
+
+        in>>input;
+        try {
+            ingredient.quantity=stof(input);
+        }
+        catch (...) {
+            cout<<"FATAL ERROR: \'"<<input<<"' not a number!";
+            exit(1);
+        }
+    }
+
+    in>>input;
+    try {
+        ingredient.price=stof(input);
+    }
+    catch (...) {
+        cout<<"FATAL ERROR: \'"<<input<<"not a number!";
+        exit(1);
+    }
+    while(ingredient.price<=0.0) {
         cout<<"Error: Ingredient price must be positive\n";
         cout<<">>> Enter a valid ingredient price: ";
-        in>>ingredient.price;
+
+        in>>input;
+        try {
+            ingredient.price=stof(input);
+        }
+        catch (...) {
+            cout<<"FATAL ERROR: \'"<<input<<"not a number!";
+            exit(1);
+        }
     }
 
     return in;
 }
 
-ostream& operator<<(ostream &out, const Pizza::Ingredient &ingredient) {
-    out<<"Name: "<<ingredient.name<<" - Quantity: "<<ingredient.quantity<<"g - Price: "<<ingredient.price<<"€";
+ostream& operator<<(ostream &out, const Ingredient &ingredient) {
+    out<<"Ingredient Name: "<<ingredient.name<<" - Quantity: "<<ingredient.quantity<<"g - Price (per gram): "<<ingredient.price<<"€";
     return out;
 }
 
-void Pizza::Ingredient::setName(string name) {
+void Ingredient::setName(string name) {
     this->name=name;
 }
 
-string Pizza::Ingredient::getName() const {
+string Ingredient::getName() const {
     return name;
 }
 
-void Pizza::Ingredient::setQuantity(float quantity) {
+void Ingredient::setQuantity(float quantity) {
     this->quantity=quantity;
 }
 
-float Pizza::Ingredient::getQuantity() const {
+float Ingredient::getQuantity() const {
     return quantity;
 }
 
-void Pizza::Ingredient::setPrice(float price) {
+void Ingredient::setPrice(float price) {
     this->price=price;
 }
 
-float Pizza::Ingredient::getPrice() const {
+float Ingredient::getPrice() const {
     return price;
 }
