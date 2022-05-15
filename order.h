@@ -10,23 +10,23 @@ using namespace std;
 
 class Order {
 protected:
-    unordered_map<const Product*, int> receipt;
+    unordered_map<const Product *, int> receipt;
     float total;
 
 public:
-    Order(): total(0) {};
+    Order() : total(0) {};
 
     Order(const Order &order);
 
-    Order& operator=(const Order &order);
+    Order &operator=(const Order &order);
 
-    friend ostream& operator<<(ostream &out, const Order &order);
+    friend ostream &operator<<(ostream &out, const Order &order);
 
-    void add(vector<Product *>menu);
+    void add(vector<Product *> menu);
 
-    void remove(vector<Product *>menu);
+    void remove(vector<Product *> menu);
 
-    virtual float getPrice() {return total;};
+    virtual float getPrice() { return total; };
 
     ~Order() {};
 };

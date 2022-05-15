@@ -8,15 +8,15 @@ class Ingredient {
     float quantity, price;
 
 public:
-    Ingredient(const string &name="Default", float quantity=0, float price=0): name(name), quantity(quantity), price(price) {};
+    Ingredient(const string &name = "Default", float quantity = 0, float price = 0) : name(name), quantity(quantity), price(price) {};
 
     Ingredient(const Ingredient &ingredient);
 
-    Ingredient& operator=(const Ingredient &ingredient);
+    Ingredient &operator=(const Ingredient &ingredient);
 
-    friend istream& operator>>(istream &in, Ingredient &ingredient);
+    friend istream &operator>>(istream &in, Ingredient &ingredient);
 
-    friend ostream& operator<<(ostream &out, const Ingredient &ingredient);
+    friend ostream &operator<<(ostream &out, const Ingredient &ingredient);
 
     void setName(string name);
 
@@ -26,7 +26,7 @@ public:
 
     float getQuantity() const;
 
-    void setPrice (float price);
+    void setPrice(float price);
 
     float getPrice() const;
 

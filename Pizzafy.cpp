@@ -83,6 +83,7 @@ int main() {
     cin >> auxs;
     try {
         auxf = stof(auxs);
+        -
     }
     catch (...) {
         cout << "FATAL ERROR: \'" << auxs << "' not a number!";
@@ -201,7 +202,7 @@ int main() {
                     exit(1);
                 }
 
-                while (n < -1 or n >= (int)menu.size()) {
+                while (n < -1 or n >= (int) menu.size()) {
                     cout << "Error: ID out of range\n";
                     cout << ">>> Enter the ID of the pizza to which an ingredient will be added: ";
 
@@ -230,7 +231,7 @@ int main() {
                     exit(1);
                 }
 
-                while (n < -1 or n >= (int)menu.size()) {
+                while (n < -1 or n >= (int) menu.size()) {
                     cout << "Error: ID out of range\n";
                     cout << ">>> Enter the ID of the pizza to be removed: ";
 
@@ -317,7 +318,7 @@ int main() {
                         order = new OnlineOrder;
                     }
 
-                    cout<<">>> Enter order distance: ";
+                    cout << ">>> Enter order distance: ";
                     cin >> auxs;
                     try {
                         stof(auxs);
@@ -329,7 +330,7 @@ int main() {
 
                     while (stof(auxs) <= 0.0) {
                         cout << "Error: Distance must be positive\n";
-                        cout<<">>> Enter order distance: ";
+                        cout << ">>> Enter order distance: ";
 
                         cin >> auxs;
                         try {
@@ -348,7 +349,7 @@ int main() {
 
             case 8:
                 print(menu);
-                cout<<'\n';
+                cout << '\n';
                 break;
 
             case 9:
@@ -362,7 +363,7 @@ int main() {
                 else
                     cout << *order;
 
-                cout<<"Total: "<<order->getPrice()<<"€\n";
+                cout << "Total: " << order->getPrice() << "€\n";
                 break;
 
             case 10:

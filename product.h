@@ -6,16 +6,19 @@ using namespace std;
 class Product {
 protected:
     static float labour;
+
     virtual float getPrice() const = 0;
+
 public:
     static void setLabourCost(float cost);
+
     static float getLabourCost();
 };
 
-float Product::labour=0;
+float Product::labour = 0;
 
-void Product::setLabourCost(float cost) {labour=cost;}
+void Product::setLabourCost(float cost) { labour = cost; }
 
-float Product::getLabourCost() {return labour;}
+float Product::getLabourCost() { return labour; }
 
 #endif

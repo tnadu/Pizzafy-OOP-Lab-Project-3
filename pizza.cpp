@@ -167,7 +167,8 @@ istream &operator>>(istream &in, VegetarianPizza &pizza) {
 }
 
 ostream &operator<<(ostream &out, VegetarianPizza &pizza) {
-    out << dynamic_cast<const Pizza &>(pizza) << "\nSoy: Quantity: " << pizza.soy.getQuantity() << "g - Price (per gram): " << pizza.soy.getPrice() << "€";
+    out << dynamic_cast<const Pizza &>(pizza) << "\nSoy: Quantity: " << pizza.soy.getQuantity() << "g - Price (per gram): " << pizza.soy.getPrice()
+        << "€";
     return out;
 }
 
